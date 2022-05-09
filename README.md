@@ -1,5 +1,10 @@
 # Simulacra
 
+Welcome to my little side project!
+The purpose of this script is to create a wordlist with possible usernames when you only know the persons full name.
+This is useful when attacking a system where you need the username, but only have access to the persons full name.
+You can try to create a small wordlist and do a password brute-force attack, or maybe a large list and Fuzz a login page.
+
 This is a hobby project and for security research.
 The code is inspired by username-anarchy, written by Andrew Horton(urbanadventurer)
 If you like the code and the idea, I highly recommend visiting and try out username-anarchy for further enumeration and learning :)
@@ -33,6 +38,8 @@ Added complexity 1 - 4.
 * Make the program able to make passwordlists based on the full name.
 * Optimize code.
 * Make middle name an option.
+* Make option that only follows indistry standard usernames. (Like j.smith)
+* turn username into mail with custom domain.
 
 # Note
 
