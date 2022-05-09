@@ -7,6 +7,8 @@ https://github.com/urbanadventurer/username-anarchy
 
 # How to use
 
+You have to use the -f -l and -c arguments!
+
 There is a simple explanation in the help menu which you can use with -h.
 Here are some examples:
 
