@@ -23,7 +23,8 @@ The script is also easy to modify. I added comments so you should find where to 
 # Changelog
 
 Version 1.0
-Added complexity 1,2,3 and 4.
+Script created.
+Added complexity 1 - 4.
 
 # Planned features
 
