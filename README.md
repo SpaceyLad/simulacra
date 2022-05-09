@@ -1,14 +1,13 @@
 # Simulacra
-Written and developed by Stian Kvålshagen
 
 This is a hobby project and for security research.
-The code is heavly inspired by username-anarchy, written by Andrew Horton(urbanadventurer)
-If you like the code and the idea, i higly recommend visiting and try out username-anarchy for further enumeration and learning :)
+The code is inspired by username-anarchy, written by Andrew Horton(urbanadventurer)
+If you like the code and the idea, I highly recommend visiting and try out username-anarchy for further enumeration and learning :)
 https://github.com/urbanadventurer/username-anarchy
 
 # How to use
 
-There is a simple explaination in the help menu which you can use with -h.
+There is a simple explanation in the help menu which you can use with -h.
 Here are some examples:
 
 A simple wordlist and printing the result on screen. 
@@ -28,13 +27,17 @@ Added complexity 1,2,3 and 4.
 
 # Planned features
 
-* Make the program able to make passwordlists based on the username.
+* Make the program able to make passwordlists based on the full name.
+* Optimize code.
+* Make middle name an option.
 
 # Note
 
 Keep in mind that usually you don't want to have to many usernames.
-If you do, password bruteforceing can take a long time.
-It is only smart if you know how to test the usernames against the target efficently.
+If you do, password brute-forcing can take a long time.
+It is only smart if you know how to test the usernames against the target efficiently.
 
 Note that I am new to python and this project was started to improve my scripting skills.
 I do appreciate feedback and tips. Feel free to throw me some ideas!
+
+Written and developed by Stian Kvålshagen :]
