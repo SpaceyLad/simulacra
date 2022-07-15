@@ -43,6 +43,7 @@ The filters in use are on top, feel free to modify them!
 ## Planned features
 * Make the program able to make password lists based on the full name.
 * Make option that only follows industry standard usernames. (Like j.smith)
+* Complexity 5 with more numbers!
 
 ## Note
 Keep in mind that usually you don't want to have to many usernames.
