@@ -22,6 +22,3 @@
 * Print function added
 * Write to file added
 * Added complexity 1 - 4.
-## Planned features
-* Make option that only follows industry standard usernames. (Like j.smith)
-* Implement quick mode for small and large lists.
