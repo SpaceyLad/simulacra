@@ -26,6 +26,9 @@ python3 simulacra.py -F Jøhn -M Snæky -L Doe -c 4 -no -d
 
 
 The filters in use are on top, feel free to modify them!
+## Planned features
+* Make option that only follows industry standard usernames. (Like j.smith)
+* Implement quick mode for small and large lists.
 ## Note
 Keep in mind that usually you don't want to have to many usernames.
 If you do, password brute-forcing can take a long time. So try to stay within complexity 2 as long as the user is not using mail with numbers in it.
