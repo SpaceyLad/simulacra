@@ -7,6 +7,8 @@ Can be used to attack AD and websites.
 
 This is script is good at finding mail addresses, but especially against Norwegian mail addresses because of the Norwegian letter conversion mode and domain mode.
 
+## What is does Simulacra mean?
+A simulacrum is a representation or imitation of a person or thing.
 ## How to use
 You must use the -F -L and -C arguments or enable easy mode with -e.
 Play around with easy mode to explore all functions, and then adjust them as you please.
