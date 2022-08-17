@@ -1,4 +1,4 @@
-# Simulacra 1.2
+# Simulacra 1.3 [Updated description comming soon!]
 Welcome to Simulacra ~
 The purpose of this script is to create a wordlist with possible usernames or email addresses when you only know the persons full name.
 This is useful when attacking a system where you need the username or mail, but only have access to the persons full name.
