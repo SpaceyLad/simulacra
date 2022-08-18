@@ -1,5 +1,11 @@
 # ChangeLog
-### 1.2 - Major update
+### 1.3 - Swedish update
+* Added Swedish character convertion.
+* Added ASCII art in easy mode.
+* Added "quick large" and "quick small" mode. (Works with all sections!)
+* Optimized convertion of scandinavic characters with nested loops.
+
+### 1.2 - Norwegian update
 * Added option for converting Norwegian letters with double and single letters.
 * Added new complexity with 0 - 9999 numbers behind every username.
 * Removed complexity 3 because of poor optimalisation
