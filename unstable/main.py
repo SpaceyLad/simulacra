@@ -14,6 +14,7 @@
 
 # TODO: Replace complexity 3 and 4 with functions.
 # TODO: Add number and number range to easy mode.
+# TODO: Fix middle name check on forname/lastname loop.
 
 import sys
 import argparse
