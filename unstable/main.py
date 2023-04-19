@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 
-# Simulacra 1.4
-# Implemented functions and cleaned up some nasty code.
-# Fixed the language function. You can now convert Norwegian AND Swedish characters.
-# Replaced the generation pattern to make all possible combinations.
-# Scandinavian characters is now automatically found and replaced instead of asked for. This should improve the flow.
-# Complexity 3 and 4 is replaced with functions.
-# Custom words function added.
-# Custom Number range function added.
-# Added exit instead of loop when choose forename and lastname is easy mode.
-
+""" *------------------------------------------------------------------------------------------------------------*
+ Simulacra 1.4
+ Implemented functions and cleaned up some nasty code.
+ Fixed the language function. You can now convert Norwegian AND Swedish characters.
+ Replaced the generation pattern to make all possible combinations.
+ Scandinavian characters is now automatically found and replaced instead of asked for. This should improve the flow.
+ Complexity 3 and 4 is replaced with functions.
+ Custom words function added.
+ Custom Number range function added.
+ Added exit instead of loop when choose forename and lastname is easy mode.
+*------------------------------------------------------------------------------------------------------------* """
+# TODO: Remove all the lower() when generating text.
 # Written and developed by Stian Kvålshagen
-
-# TODO: Fix double a not applying properly after å.. Fix scandinavian logic?
 
 import argparse
 from colorama import Fore, Style
@@ -25,15 +25,18 @@ range_max = 100
 
 # Arguments
 parser = argparse.ArgumentParser()
-parser.add_argument("-c", "--commonNr",help="Add common numbers to the back of generated usernames.")
+parser.add_argument("-c", "--commonNr", help="Add common numbers to the back of generated usernames.")
 parser.add_argument("-d", "--domain", help="Print with mail domain. Example: outlook.com", action="store_true")
-parser.add_argument("-e", "--easy", help="Easy mode! Just follow the text. (For non-technical people.)",action="store_true")
+parser.add_argument("-e", "--easy", help="Easy mode! Just follow the text. (For non-technical people.)",
+                    action="store_true")
 parser.add_argument("-F", "--firstname", help="The first name.", type=str)
 parser.add_argument("-L", "--lastname", help="The last name.", type=str)
-parser.add_argument("-l", "--light", help="Light mode. Generates less usernames.", action=argparse.BooleanOptionalAction)
+parser.add_argument("-l", "--light", help="Light mode. Generates less usernames.",
+                    action=argparse.BooleanOptionalAction)
 parser.add_argument("-M", "--middlename", help="The middle name.", type=str)
 parser.add_argument("-p", "--print", help="Print result", action=argparse.BooleanOptionalAction)
-parser.add_argument("-r", "--range", help=f"Add numbers {range_min} to {range_max} to the end of generated username.",action=argparse.BooleanOptionalAction)
+parser.add_argument("-r", "--range", help=f"Add numbers {range_min} to {range_max} to the end of generated username.",
+                    action=argparse.BooleanOptionalAction)
 parser.add_argument("-qa", "--quickall", help="Quick mode with max result. Will not affect easy mode.",
                     action="store_true")
 parser.add_argument("-qm", "--quickminimum", help="Quick mode with minimum result. Will not affect easy mode.",
@@ -53,7 +56,8 @@ lastnames = []
 
 
 def easy():
-    print(f"  _________.__              .__\n /   _____/|__| _____  __ __|  | _____    ________________\n \_____  \ |  |/     \|  |  \  | \__  \ _/ ___\_  __ \__  \ \n /        \|  |  Y Y  \  |  /  |__/  __ \\  \___|  | \// __ \_\n/_______  /|__|__|_|  /____/|____(____  /\___  >__|  (____  /\n        \/          \/                \/     \/           \/\n")
+    print(
+        f"  _________.__              .__\n /   _____/|__| _____  __ __|  | _____    ________________\n \_____  \ |  |/     \|  |  \  | \__  \ _/ ___\_  __ \__  \ \n /        \|  |  Y Y  \  |  /  |__/  __ \\  \___|  | \// __ \_\n/_______  /|__|__|_|  /____/|____(____  /\___  >__|  (____  /\n        \/          \/                \/     \/           \/\n")
 
     # Firstname
     while 1:
@@ -79,7 +83,7 @@ def easy():
 
     # Light mode check.
     lightCheck = input(f"{Fore.CYAN}Light mode? [Less usernames][y/n]\n{Style.RESET_ALL}")
-    if lightCheck is "y":
+    if lightCheck == "y":
         args.light = True
 
     # Domain check.
@@ -92,7 +96,8 @@ def easy():
     # Nr check.
     nrCheck = input(f"{Fore.CYAN}Do you want to add numbers to the end of the name?[y/n]\n{Style.RESET_ALL}")
     if nrCheck == "y":
-        typeCheck = input(f"{Fore.CYAN}1. Common numbers. {' '.join(map(str, commonNumbers))}\n2. Everything between {range_min} and {range_max} \n3. No numbers. \n{Style.RESET_ALL}")
+        typeCheck = input(
+            f"{Fore.CYAN}1. Common numbers. {' '.join(map(str, commonNumbers))}\n2. Everything between {range_min} and {range_max} \n3. No numbers. \n{Style.RESET_ALL}")
         match typeCheck:
             case "1":
                 args.commonNr = True
@@ -202,18 +207,24 @@ def middle_name_add(usernames):
                         usernames.append(f.lower() + m.lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
                         usernames.append(f.lower() + x + m[0].lower() + l[0].lower() + l[1].lower() + l[2].lower())
                         usernames.append(f.lower() + x + m.lower() + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(f.lower() + x + m[0].lower() + x + l[0].lower() + l[1].lower() +l[2].lower())
-                        usernames.append(f.lower() + x + m.lower() + x + l[0].lower() + l[1].lower() +l[2].lower())
+                        usernames.append(f.lower() + x + m[0].lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
+                        usernames.append(f.lower() + x + m.lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
 
                 # 4. 3 letters first name & 3 letters middle name &  3 letters last name
                 usernames.append(
-                    f[0].lower() + f[1].lower() + f[2].lower() + m[0].lower() + m[1].lower() + m[2].lower() + l[0].lower() + l[1].lower() + l[2].lower())
+                    f[0].lower() + f[1].lower() + f[2].lower() + m[0].lower() + m[1].lower() + m[2].lower() + l[
+                        0].lower() + l[1].lower() + l[2].lower())
                 if args.light:
                     for x in special:
                         usernames.append(
-                            f[0].lower() + f[1].lower() + f[2].lower() + m[0].lower() + m[1].lower() + m[2].lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(f[0].lower() + f[1].lower() + f[2].lower() + x + m[0].lower() +m[1].lower() +m[2].lower() + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(f[0].lower() + f[1].lower() + f[2].lower() + x + m[0].lower() +m[1].lower() +m[2].lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
+                            f[0].lower() + f[1].lower() + f[2].lower() + m[0].lower() + m[1].lower() + m[
+                                2].lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
+                        usernames.append(
+                            f[0].lower() + f[1].lower() + f[2].lower() + x + m[0].lower() + m[1].lower() + m[
+                                2].lower() + l[0].lower() + l[1].lower() + l[2].lower())
+                        usernames.append(
+                            f[0].lower() + f[1].lower() + f[2].lower() + x + m[0].lower() + m[1].lower() + m[
+                                2].lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
 
                 # 5. full names mix
                 usernames.append(f.lower() + m.lower() + l.lower())
@@ -238,11 +249,16 @@ def scandinavian():
             uI = "3"
         if not quick_minimum and not quick_all:
             if args.middlename:
-                if "ø" in forenames[0] or "æ" in forenames[0] or "å" in forenames[0] or "ø" in lastnames[0] or "æ" in lastnames[0] or "å" in lastnames[0] or "ø" in middlenames[0] or "æ" in middlenames[0] or "å" in middlenames[0]:
-                    uI = input(f"{Fore.CYAN}Select the following option to convert Norwegian/Danish letters:\n[1] Convert All\n[2] Convert double only (Ex: ø = oo)\n[3] Convert single only (Ex: ø = o)\n[4] None\n{Style.RESET_ALL}")
+                if "ø" in forenames[0] or "æ" in forenames[0] or "å" in forenames[0] or "ø" in lastnames[0] or "æ" in \
+                        lastnames[0] or "å" in lastnames[0] or "ø" in middlenames[0] or "æ" in middlenames[0] or "å" in \
+                        middlenames[0]:
+                    uI = input(
+                        f"{Fore.CYAN}Select the following option to convert Norwegian/Danish letters:\n[1] Convert All\n[2] Convert double only (Ex: ø = oo)\n[3] Convert single only (Ex: ø = o)\n[4] None\n{Style.RESET_ALL}")
             else:
-                if "ø" in forenames[0] or "æ" in forenames[0] or "å" in forenames[0] or "ø" in lastnames[0] or "æ" in lastnames[0] or "å" in lastnames[0]:
-                    uI = input(f"{Fore.CYAN}Select the following option to convert Norwegian/Danish letters:\n[1] Convert All\n[2] Convert double only (Ex: ø = oo)\n[3] Convert single only (Ex: ø = o)\n[4] None\n{Style.RESET_ALL}")
+                if "ø" in forenames[0] or "æ" in forenames[0] or "å" in forenames[0] or "ø" in lastnames[0] or "æ" in \
+                        lastnames[0] or "å" in lastnames[0]:
+                    uI = input(
+                        f"{Fore.CYAN}Select the following option to convert Norwegian/Danish letters:\n[1] Convert All\n[2] Convert double only (Ex: ø = oo)\n[3] Convert single only (Ex: ø = o)\n[4] None\n{Style.RESET_ALL}")
             nor_combo_1 = ["æ", "ø", "å"]
             nor_combo_2 = ["a", "o", "a", "e"]
             nor_combo_3 = ["ae", "oo", "aa"]
@@ -253,11 +269,14 @@ def scandinavian():
             uI = "3"
         if not quick_minimum and not quick_all:
             if args.middlename:
-                if "ä" in forenames[0] or "ö" in forenames[0] or "ä" in lastnames[0] or "ö" in lastnames[0] or "ä" in middlenames[0] or "ö" in middlenames[0]:
-                    uI = input(f"{Fore.CYAN}Select the following option to convert Swedish/Finnish letters:\n[1] Convert All\n[2] Convert double only (Ex: ö = oo)\n[3] Convert single only (Ex: ö = o)\n[4] None\n{Style.RESET_ALL}")
+                if "ä" in forenames[0] or "ö" in forenames[0] or "ä" in lastnames[0] or "ö" in lastnames[0] or "ä" in \
+                        middlenames[0] or "ö" in middlenames[0]:
+                    uI = input(
+                        f"{Fore.CYAN}Select the following option to convert Swedish/Finnish letters:\n[1] Convert All\n[2] Convert double only (Ex: ö = oo)\n[3] Convert single only (Ex: ö = o)\n[4] None\n{Style.RESET_ALL}")
             else:
                 if "ä" in forenames[0] or "ö" in forenames[0] or "ä" in lastnames[0] or "ö" in lastnames[0]:
-                    uI = input(f"{Fore.CYAN}Select the following option to convert Swedish/Finnish letters:\n[1] Convert All\n[2] Convert double only (Ex: ö = oo)\n[3] Convert single only (Ex: ö = o)\n[4] None\n{Style.RESET_ALL}")
+                    uI = input(
+                        f"{Fore.CYAN}Select the following option to convert Swedish/Finnish letters:\n[1] Convert All\n[2] Convert double only (Ex: ö = oo)\n[3] Convert single only (Ex: ö = o)\n[4] None\n{Style.RESET_ALL}")
                 swe_combo_1 = ["ä", "ö", "å"]
                 swe_combo_2 = ["a", "o", "a"]
                 swe_combo_3 = ["aa", "oo", "aa"]
@@ -266,28 +285,24 @@ def scandinavian():
 
 def convert_scandinavian(combo_1, combo_2, combo_3, user_input):
     if args.middlename:
-        checks = [forenames,lastnames,middlenames]
+        checks = [forenames, lastnames, middlenames]
     else:
         checks = [forenames, lastnames]
-
     for current in checks:
         cache = []
-        for o in range(3):
-            for x in current:
-                for y in range(len(combo_1)):
-                    if combo_1[y] in x.lower():
-                        # TODO: Check that all is working  here!
-                        if user_input == "1" or user_input == "2":
-                            scanVar = x.lower()
-                            scanVar = scanVar.replace(combo_1[y], combo_3[y])
-                            cache.append(scanVar)
-                        if user_input == "1" or user_input == "3":
-                            scanVar = x.lower()
-                            scanVar = scanVar.replace(combo_1[y], combo_2[y])
-                            cache.append(scanVar)
-            for x in cache:
-                print(x)
-                current.append(x)
+        for x in current:
+            for y in range(len(combo_1)):
+                if combo_1[y] in x.lower():
+                    if user_input == "1" or user_input == "2":
+                        scanVar = x.lower()
+                        scanVar = scanVar.replace(combo_1[y], combo_3[y])
+                        cache.append(scanVar)
+                    if user_input == "1" or user_input == "3":
+                        scanVar = x.lower()
+                        scanVar = scanVar.replace(combo_1[y], combo_2[y])
+                        cache.append(scanVar)
+        for x in cache:
+            current.append(x)
 
 
 def domains(usernames, skip, domains_input):
@@ -345,33 +360,49 @@ def questions():
 
 def generate_wordlist():
     usernames = []
+
+    # Fill the lists if it is not running easy mode.
+    if args.firstname != "":
+        forenames.append(args.firstname)
+    if args.middlename != "":
+        middlenames.append(args.middlename)
+    if args.lastname != "":
+        lastnames.append(args.lastname)
+
     if not args.middlename:
         print(f"{Fore.GREEN}Generating wordlist for: {forenames[0]} {lastnames[0]} {Style.RESET_ALL}")
     if args.middlename:
         print(f"{Fore.GREEN}Generating wordlist for {forenames[0]} {middlenames[0]} {lastnames[0]} {Style.RESET_ALL}: ")
 
-    if "ø" in forenames[0] or "æ" in forenames[0] or "å" in forenames[0] or "ä" in forenames[0] or "ö" in forenames[0] or "ø" in lastnames[0] or "æ" in lastnames[0] or "å" in lastnames[0] or "ä" in lastnames[0] or "ö" in lastnames[0] or "ø" in middlenames[0] or "æ" in middlenames[0] or "å" in middlenames[0] or "ä" in middlenames[0] or "ö" in middlenames[0]:
+    if "ø" in forenames[0] or "æ" in forenames[0] or "å" in forenames[0] or "ä" in forenames[0] or "ö" in forenames[
+        0] or "ø" in lastnames[0] or "æ" in lastnames[0] or "å" in lastnames[0] or "ä" in lastnames[0] or "ö" in \
+            lastnames[0] or "ø" in middlenames[0] or "æ" in middlenames[0] or "å" in middlenames[0] or "ä" in \
+            middlenames[0] or "ö" in middlenames[0]:
         scandinavian()
 
     for f in forenames:
+        f = f.lower()
         for l in lastnames:
-
+            l = l.lower()
             # The basic conversions! Will always be used.
             # 1. First letter from lastname + name & vise versa
-            usernames.append(l[0].lower() + f.lower())
-            usernames.append(f[0].lower() + l.lower())
+            usernames.append(f"{l[0]}{f}")
+            usernames.append(f"{f[0]}{l}")
 
             # 2. pure names
-            usernames.append(f.lower())
-            usernames.append(l.lower())
+            usernames.append(f"{f}")
+            usernames.append(f"{l}")
 
             # 3. name & 3 letters last name
-            usernames.append(f.lower() + l[0].lower() + l[1].lower() + l[2].lower())
+            usernames.append(f"{f}{l[0]}{l[1]}{l[2]}")
 
             # 4. 3 letters first name & 3 letters lastname
+            usernames.append(f"{f[0]}{f[1]}{f[2]}{l[0]}{l[1]}{l[2]}")
+
+            # 4. 3 letters first name & 4 letters lastname
             usernames.append(
                 f[0].lower() + f[1].lower() + f[2].lower() + l[0].lower() + l[1].lower() +
-                l[2].lower())
+                l[2].lower() + l[3].lower())
 
             # 5. name and lastname
             usernames.append(f.lower() + l.lower())
@@ -396,7 +427,7 @@ def generate_wordlist():
 
     # Print if wanted.
     if args.print:
-        print(f"{Fore.GREEN }Result:{Style.RESET_ALL}")
+        print(f"{Fore.GREEN}Result:{Style.RESET_ALL}")
         for x in usernames:
             print(x)
 
@@ -404,7 +435,8 @@ def generate_wordlist():
     for x in forenames:
         print(x)
     amount = len(usernames)
-    writeCheck = input(f"{Fore.CYAN}Your list will have {amount} words in it. Are you sure you want to make the wordlist?[y/n]{Style.RESET_ALL}")
+    writeCheck = input(
+        f"{Fore.CYAN}Your list will have {amount} words in it. Are you sure you want to make the wordlist?[y/n]{Style.RESET_ALL}")
     if writeCheck == "y":
         write_result(usernames)
     else:
