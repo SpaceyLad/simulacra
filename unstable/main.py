@@ -6,13 +6,14 @@
  Fixed the language function. You can now convert Norwegian AND Swedish characters.
  Replaced the generation pattern to make all possible combinations.
  Scandinavian characters is now automatically found and replaced instead of asked for. This should improve the flow.
- Complexity 3 and 4 is replaced with functions.
- Custom words function added.
+ Complexity 3 and 4 is replaced with functions called common_nr and range.
  Custom Number range function added.
  Added exit instead of loop when choose forename and lastname is easy mode.
 *------------------------------------------------------------------------------------------------------------* """
-# TODO: Remove all the lower() when generating text.
+
 # Written and developed by Stian Kvålshagen
+# TODO: Make light mode only include industry standard.
+# TODO: Improve the algorithm that creates the words. Now it should be simple after the rework!
 
 import argparse
 from colorama import Fore, Style
@@ -25,7 +26,7 @@ range_max = 100
 
 # Arguments
 parser = argparse.ArgumentParser()
-parser.add_argument("-c", "--commonNr", help="Add common numbers to the back of generated usernames.")
+parser.add_argument("-c", "--commonNr", help="Add common numbers to the back of generated usernames.", action="store_true")
 parser.add_argument("-d", "--domain", help="Print with mail domain. Example: outlook.com", action="store_true")
 parser.add_argument("-e", "--easy", help="Easy mode! Just follow the text. (For non-technical people.)",
                     action="store_true")
@@ -127,38 +128,36 @@ def non_light_mode(usernames):
     for f in forenames:
         for l in lastnames:
             for x in special:
-                usernames.append(l[0].lower() + x + f.lower())
-                usernames.append(f[0].lower() + x + l.lower())
+                # Write what this part does here!
+                usernames.append(f"{l[0]}{x}{f}")
+                usernames.append(f"{f[0]}{x}{l}")
 
-            for x in special:
-                usernames.append(f.lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
+                # Write what this part does here!
+                usernames.append(f"{f}{x}{l[0]}{l[1]}{l[2]}")
 
-            for x in special:
-                usernames.append(
-                    f[0].lower() + f[1].lower() + f[2].lower() + x + l[0].lower() + l[
-                        1].lower() + l[
-                        2].lower())
+                # Write what this part does here!
+                usernames.append(f"{f[0]}{f[1]}{f[2]}{x}{l[0]}{l[1]}{l[2]}")
 
-            for x in special:
-                usernames.append(f.lower() + x + l.lower())
-                usernames.append(l.lower() + x + f.lower())
+                # Write what this part does here!
+                usernames.append(f"{f}{x}{l}")
+                usernames.append(f"{l}{x}{f}")
 
 
-def add_commonNr(usernames):
+def add_common_nr(usernames):
     holder = []
 
     for f in forenames:
         for l in lastnames:
             for x in commonNumbers:
-                usernames.append(f.lower() + f[0].lower() + l[1].lower() + l[2].lower() + x)
+                usernames.append(f"{f}{f[0]}{l[1]}{l[2]}{x}")
 
             for x in commonNumbers:
-                usernames.append(f.lower() + l.lower() + x)
-                usernames.append(l.lower() + f.lower() + x)
+                usernames.append(f"{f}{l}{x}")
+                usernames.append(f"{l}{f}{x}")
 
     for x in usernames:
         for y in commonNumbers:
-            holder.append(x + y)
+            holder.append(f"{x}{y}")
     for x in holder:
         usernames.append(x)
 
@@ -167,7 +166,7 @@ def range_add(usernames):
     holder = []
     for x in usernames:
         for y in range(range_min, range_max):
-            holder.append(x + str(y))
+            holder.append(f"{x}{y}")
     for x in holder:
         usernames.append(x)
 
@@ -177,66 +176,62 @@ def middle_name_add(usernames):
         for l in lastnames:
             for m in middlenames:
                 # 1 First letter from lastname & first name & vise versa including middle name)
-                usernames.append(l[0].lower() + m[0].lower() + f.lower())
-                usernames.append(f[0].lower() + m[0].lower() + l.lower())
-                usernames.append(l[0].lower() + m.lower() + f.lower())
-                usernames.append(f[0].lower() + m.lower() + l.lower())
-                if args.light:
+                usernames.append(f"{l[0]}{m}{f}")
+                usernames.append(f"{f[0]}{m}{l}")
+                usernames.append(f"{l[0]}{m[0]}{f}")
+                usernames.append(f"{f[0]}{m[0]}{l}")
+                usernames.append(f"{l[0]}{m[0]}{f[0]}")
+                usernames.append(f"{f[0]}{m[0]}{l[0]}")
+                usernames.append(f"{l[0]}{m}{f[0]}")
+                usernames.append(f"{f[0]}{m}{l[0]}")
+                if not args.light:
                     for x in special:
-                        usernames.append(l[0].lower() + m[0].lower() + x + f.lower())
-                        usernames.append(f[0].lower() + m[0].lower() + x + l.lower())
-                        usernames.append(l[0].lower() + m.lower() + x + f.lower())
-                        usernames.append(f[0].lower() + m.lower() + x + l.lower())
-                        usernames.append(l[0].lower() + x + m[0].lower() + f.lower())
-                        usernames.append(f[0].lower() + x + m[0].lower() + l.lower())
-                        usernames.append(l[0].lower() + x + m.lower() + f.lower())
-                        usernames.append(f[0].lower() + x + m.lower() + l.lower())
-                        usernames.append(l[0].lower() + x + m[0].lower() + x + f.lower())
-                        usernames.append(f[0].lower() + x + m[0].lower() + x + l.lower())
-                        usernames.append(l[0].lower() + x + m.lower() + x + f.lower())
-                        usernames.append(f[0].lower() + x + m.lower() + x + l.lower())
+                        usernames.append(f"{l[0]}{m[0]}{x}{f}")
+                        usernames.append(f"{f[0]}{m[0]}{x}{l}")
+                        usernames.append(f"{l[0]}{m}{x}{f}")
+                        usernames.append(f"{f[0]}{m}{x}{l}")
+                        usernames.append(f"{l[0]}{x}{m[0]}{f}")
+                        usernames.append(f"{f[0]}{x}{m[0]}{l}")
+                        usernames.append(f"{l[0]}{x}{m}{f}")
+                        usernames.append(f"{f[0]}{x}{m}{l}")
+                        usernames.append(f"{l[0]}{x}{m[0]}{x}{f}")
+                        usernames.append(f"{f[0]}{x}{m[0]}{x}{l}")
+                        usernames.append(f"{l[0]}{x}{m}{x}{f}")
+                        usernames.append(f"{f[0]}{x}{m}{x}{l}")
 
                 # 2. middle name
-                usernames.append(m.lower())
+                usernames.append(f"{m}")
 
                 # 3. name & 1 letter middle name & 3 letters last name
-                usernames.append(f.lower() + m[0].lower() + l[0].lower() + l[1].lower() + l[2].lower())
-                if args.light:
+                usernames.append(f"{f}{m[0]}{l[0]}{l[1]}{l[2]}")
+                if not args.light:
                     for x in special:
-                        usernames.append(f.lower() + m[0].lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(f.lower() + m.lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(f.lower() + x + m[0].lower() + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(f.lower() + x + m.lower() + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(f.lower() + x + m[0].lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(f.lower() + x + m.lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
+                        usernames.append(f"{f}{m[0]}{x}{l[0]}{l[1]}{l[2]}")
+                        usernames.append(f"{f}{m}{x}{l[0]}{l[1]}{l[2]}")
+                        usernames.append(f"{f}{x}{m[0]}{l[0]}{l[1]}{l[2]}")
+                        usernames.append(f"{f}{x}{m}{l[0]}{l[1]}{l[2]}")
+                        usernames.append(f"{f}{x}{m[0]}{x}{l[0]}{l[1]}{l[2]}")
+                        usernames.append(f"{f}{x}{m}{x}{l[0]}{l[1]}{l[2]}")
 
                 # 4. 3 letters first name & 3 letters middle name &  3 letters last name
-                usernames.append(
-                    f[0].lower() + f[1].lower() + f[2].lower() + m[0].lower() + m[1].lower() + m[2].lower() + l[
-                        0].lower() + l[1].lower() + l[2].lower())
-                if args.light:
+                usernames.append(f"{f[0]}{f[1]}{f[2]}{m[0]}{m[1]}{m[2]}{l[0]}{l[1]}{l[2]}")
+                if not args.light:
                     for x in special:
-                        usernames.append(
-                            f[0].lower() + f[1].lower() + f[2].lower() + m[0].lower() + m[1].lower() + m[
-                                2].lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(
-                            f[0].lower() + f[1].lower() + f[2].lower() + x + m[0].lower() + m[1].lower() + m[
-                                2].lower() + l[0].lower() + l[1].lower() + l[2].lower())
-                        usernames.append(
-                            f[0].lower() + f[1].lower() + f[2].lower() + x + m[0].lower() + m[1].lower() + m[
-                                2].lower() + x + l[0].lower() + l[1].lower() + l[2].lower())
+                        usernames.append(f"{f[0]}{f[1]}{f[2]}{m[0]}{m[1]}{m[2]}{x}{l[0]}{l[1]}{l[2]}")
+                        usernames.append(f"{f[0]}{f[1]}{f[2]}{x}{m[0]}{m[1]}{m[2]}{l[0]}{l[1]}{l[2]}")
+                        usernames.append(f"{f[0]}{f[1]}{f[2]}{x}{m[0]}{m[1]}{m[2]}{x}{l[0]}{l[1]}{l[2]}")
 
                 # 5. full names mix
-                usernames.append(f.lower() + m.lower() + l.lower())
-                usernames.append(l.lower() + m.lower() + f.lower())
-                if args.light:
+                usernames.append(f"{f}{m}{l}")
+                usernames.append(f"{l}{m}{f}")
+                if not args.light:
                     for x in special:
-                        usernames.append(f.lower() + m.lower() + x + l.lower())
-                        usernames.append(l.lower() + m.lower() + x + f.lower())
-                        usernames.append(f.lower() + x + m.lower() + l.lower())
-                        usernames.append(l.lower() + x + m.lower() + f.lower())
-                        usernames.append(f.lower() + x + m.lower() + x + l.lower())
-                        usernames.append(l.lower() + x + m.lower() + x + f.lower())
+                        usernames.append(f"{f}{m}{x}{l}")
+                        usernames.append(f"{l}{m}{x}{f}")
+                        usernames.append(f"{f}{x}{m}{l}")
+                        usernames.append(f"{l}{x}{m}{f}")
+                        usernames.append(f"{f}{x}{m}{x}{l}")
+                        usernames.append(f"{l}{x}{m}{x}{f}")
 
 
 # Convert Norwegian/Danish or Swedish letters into single and double letters.
@@ -400,13 +395,11 @@ def generate_wordlist():
             usernames.append(f"{f[0]}{f[1]}{f[2]}{l[0]}{l[1]}{l[2]}")
 
             # 4. 3 letters first name & 4 letters lastname
-            usernames.append(
-                f[0].lower() + f[1].lower() + f[2].lower() + l[0].lower() + l[1].lower() +
-                l[2].lower() + l[3].lower())
+            usernames.append(f"{f[0]}{f[1]}{f[2]}{l[0]}{l[1]}{l[2]}{l[3]}")
 
             # 5. name and lastname
-            usernames.append(f.lower() + l.lower())
-            usernames.append(l.lower() + f.lower())
+            usernames.append(f"{f}{l}")
+            usernames.append(f"{l}{f}")
 
     special_nr, domains_input, skip = questions()
 
@@ -416,7 +409,7 @@ def generate_wordlist():
         non_light_mode(usernames)
         special_characters(special_nr)
     if args.commonNr:
-        add_commonNr(usernames)
+        add_common_nr(usernames)
     if args.range:
         range_add(usernames)
     if args.domain:
