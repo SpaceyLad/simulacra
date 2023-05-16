@@ -1,4 +1,8 @@
 # Simulacra 1.4
+
+![bilde](https://github.com/SpaceyLad/simulacra/assets/87969837/6bbccb82-891e-472f-8acf-66148419041b)
+
+
 Welcome to Simulacra ~
 The purpose of this script is to create a wordlist with possible usernames or email addresses when you only know the person’s full name.
 This is useful when attacking a system where you need the username or mail, but only have access to the persons full name.
