@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block title %}Update{% endblock %} {% block content %}
+<h1>Welcome {{ user }}! </h1>
+<h2>News</h2>
+<h3>Simulacra 1.5 (Unstable)</h3>
+<ul>
+  <li>Added web gui to Simulacra</li>
+  <li>JWT tokens for secure sessions</li>
+  <li>Config for Web gui added</li>
+  <li>TODO: Add readme for proper and secure setup.</li>
+</ul>
+<h3>Simulacra 1.4</h3>
+<ul>
+  <li>Implemented functions and cleaned up some nasty code.</li>
+  <li>Fixed the language function. You can now convert Norwegian AND Swedish characters.</li>
+  <li>Replaced the generation pattern to make all possible combinations.</li>
+  <li>Scandinavian characters is now automatically found and replaced instead of asked for. This should improve the flow.</li>
+  <li>Complexity 3 and 4 is replaced with functions called common_nr and range.</li>
+  <li>Custom Number range function added.</li>
+  <li>Added exit instead of loop when choose forename and lastname is easy mode.</li>
+</ul>
+<br>
+<h3>1.3 Swedish update</h3>
+<ul>
+  <li>Added Swedish character conversion.</li>
+  <li>Added ASCII art in easy mode.</li>
+  <li>Added "quick large" and "quick small" mode. (Works with all sections!)</li>
+  <li>Optimized conversion of scandinavic characters with nested loops.</li>
+</ul>
+<br>
+<h3>1.2 Norwegian update</h3>
+<ul>
+  <li>Added option for converting Norwegian letters with double and single letters.</li>
+  <li>Added new complexity with 0 - 9999 numbers behind every username.</li>
+  <li>Removed complexity 3 because of poor optimalisation</li>
+  <li>Remove duplicates.</li>
+  <li>Tweaked the number gens not including the original value without number in complexity 3 and 4.</li>
+  <li>Improved flow in easy mode</li>
+  <li>Improved domain function. You can now add more than 1 domain.</li>
+  <li>Default complexity is 2 (Recommended)</li>
+  <li>Fixed a handful of logic flaws.</li>
+  <li>Make it possible to add own symbols in complexity 2.</li>
+</ul>
+<br>
+<h3>1.1 Minor update</h3>
+<ul>
+  <li>Easy mode added</li>
+  <li>Colours added</li>
+  <li>Domain added</li>
+  <li>Middle name option added</li>
+  <li>Cleaner code</li>
+</ul>
+<br>
+<h3>1.0 Creation</h3>
+<ul>
+  <li>First name added</li>
+  <li>Last name added</li>
+  <li>Print function added</li>
+  <li>Write to file added</li>
+  <li>Added complexity 1 - 4.</li>
+</ul> {% endblock %}

@@ -7,17 +7,6 @@ from colorama import Fore, Style
     Date: 13.05.2023
 *------------------------------------------------------------------------------------------------------------* """
 
-""" *------------------------------------------------------------------------------------------------------------*
- Simulacra 1.4
- Implemented functions and cleaned up some nasty code.
- Fixed the language function. You can now convert Norwegian AND Swedish characters.
- Replaced the generation pattern to make all possible combinations.
- Scandinavian characters is now automatically found and replaced instead of asked for. This should improve the flow.
- Complexity 3 and 4 is replaced with functions called common_nr and range.
- Custom Number range function added.
- Added exit instead of loop when choose forename and lastname is easy mode.
-*------------------------------------------------------------------------------------------------------------* """
-
 # Settings
 special = [".", "-", "_"]
 commonNumbers = ["1", "2", "3", "12", "123"]

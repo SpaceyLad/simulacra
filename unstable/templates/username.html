@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Secret{% endblock %}
+
+{% block content %}
+<h1>Generate usernames & emails</h1>
+<p>Forename *</p>
+<input type="value" id="fore"><br>
+<p>Middle name</p>
+<input type="value" id="middle"><br>
+<p>Last name *</p>
+<input type="value" id="last"><br>
+<p>Domain</p>
+<input type="value" id="domain"><br>
+<p><input type="checkbox" id="common">Common numbers</p>
+<p><input type="checkbox" id="range">Number range</p>
+<p><input type="checkbox" id="specific">Specific numbers</p>
+<br>
+<p>Specific numbers</p>
+<input type="value" id="range_nr" value="1,2,3,10"><br>
+<br>
+<p>Range</p>
+<p>Minimum</p><input type="number" id="min" name="quantity" min="1" max="10000"><br>
+<p>Maximum</p><input type="number" id="max" name="quantity" min="1" max="10000">
+
+<br><br><input type="Submit" value="Generate">
+{% endblock %}

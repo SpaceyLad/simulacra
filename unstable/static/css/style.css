@@ -1,0 +1,27 @@
+.sidebar {
+            height: 100%;
+            width: 10%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar h1 {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .main-content {
+            margin-left: 10%;
+            padding: 20px;
+        }

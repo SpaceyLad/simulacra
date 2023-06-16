@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulacra</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h1> {{ user }}</h1>
+        {% if not user %}
+        <a href="/">Log in</a>
+        {% endif %}
+        {% if is_admin %}
+        <a href="/admin">Users</a>
+        {% endif %}
+        <a href="/open">Info</a>
+        {% if user %}
+        <a href="/update">Updates</a>
+        <a href="/username">Username</a>
+        <a href="/logout">Logout</a>
+        {% endif %}
+    </div>
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
