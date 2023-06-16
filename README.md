@@ -15,7 +15,7 @@ This is script is good at finding email addresses, but especially against Scandi
 A simulacra is a representation or imitation of a person, object, or phenomenon. It often refers to a copy or simulation that might not have a direct connection to the original, creating a sense of detachment from reality.
 
 ## How to use
-You must use the -F (First name)-L (Last name) and -c (Complexity) arguments or enable easy mode with -e.
+You must use the -F (First name)-L (Last name) or enable easy mode with -e.
 Play around with easy mode to explore all functions, and then adjust them as you please.
 There is a simple explanation in the help menu.
 The script supports conversion of names that includes both Norwegian/Danish and Swedish/Finnish characters.
