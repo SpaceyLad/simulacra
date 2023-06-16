@@ -3,7 +3,8 @@
 {% block title %}Secret{% endblock %}
 
 {% block content %}
-<h1>Generate usernames & emails</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/username.css') }}">
+<h1 class="glitch">Generate usernames & emails</h1>
 <p>Forename *</p>
 <input type="value" id="fore"><br>
 <p>Middle name</p>

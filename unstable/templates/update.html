@@ -1,12 +1,12 @@
 {% extends "base.html" %} {% block title %}Update{% endblock %} {% block content %}
-<h1>Welcome {{ user }}! </h1>
+<h1 class="glitch">Welcome {{ user }}! </h1>
 <h2>News</h2>
 <h3>Simulacra 1.5 (Unstable)</h3>
 <ul>
   <li>Added web gui to Simulacra</li>
   <li>JWT tokens for secure sessions</li>
   <li>Config for Web gui added</li>
-  <li>TODO: Add readme for proper and secure setup.</li>
+  <li>readme for proper and secure setup.</li>
 </ul>
 <h3>Simulacra 1.4</h3>
 <ul>
@@ -57,4 +57,15 @@
   <li>Print function added</li>
   <li>Write to file added</li>
   <li>Added complexity 1 - 4.</li>
-</ul> {% endblock %}
+</ul>
+
+<br>
+
+<h2>Comming functions</h2>
+<ul>
+  <li>SQLite database for users and history</li>
+  <li>Create a user list for the admin panel</li>
+</ul>
+
+
+{% endblock %}

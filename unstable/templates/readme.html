@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Open{% endblock %}
+
+{% block content %}
+
+    <h2 class="glitch_login">Setup info</h2>
+
+    <h3>Users</h3>
+    <p>The default users should be removed and changed with custom users.</p>
+    <p>Go to config.py and change the usernames and passwords there. (SQLite comming soon)</p>
+
+    <br>
+
+    <h3>JWT</h3>
+    <p>The JWT secret is weak and should be changed with a long and hard to crack secret.</p>
+    <p>Go to config.py and generate a long secret key. Preferably adding it into your local machine environment.</p>
+
+    <br>
+
+    <h3>Default test users</h3>
+    <p>admin:admin</p>
+    <p>test:test</p>
+{% endblock %}

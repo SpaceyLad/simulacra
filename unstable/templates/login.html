@@ -3,10 +3,11 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <form action="/login" method="post">
-    <label for="username">Username:</label><br>
+    <label for="username" class="glitch">Username</label><br>
     <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
+    <label for="password" class="glitch">Password</label><br>
     <input type="password" id="password" name="password"><br><br>
     <input type="submit" value="Submit">
     </form>

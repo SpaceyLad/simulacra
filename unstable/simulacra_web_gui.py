@@ -30,7 +30,7 @@ def login():
         resp = make_response(redirect('/update'))
         resp.set_cookie('token', token)
         return resp
-    return 'Invalid username or password!', 401
+    return redirect('/')
 
 
 # The main landing page for a user that successfully logged into to the website.
@@ -90,16 +90,16 @@ def secret():
 
 
 # Open place where everyone can visit.
-@app.route('/open')
+@app.route('/readme')
 def open_route():
     token = request.cookies.get('token')
     if not token:
-        return render_template('open.html', user="", group="", is_admin=False)
+        return render_template('readme.html', user="", group="", is_admin=False)
     try:
         data = jwt.decode(token, secret_key, algorithms=['HS256'])
         if data['group'] == 'admin' or data['group'] == 'user':
             is_admin = data["group"] == "admin"
-            return render_template('open.html', user=data["user"], group=data["group"], is_admin=is_admin)
+            return render_template('readme.html', user=data["user"], group=data["group"], is_admin=is_admin)
         else:
             return make_response(redirect('/'))
     except jwt.ExpiredSignatureError:

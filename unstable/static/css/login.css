@@ -1,0 +1,57 @@
+/* login.css */
+
+form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Style the labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Style the input fields */
+input[type="text"], input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #333333;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+/* Add some mysterious glow to the input fields on focus */
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #44cc44;
+    box-shadow: 0 0 5px rgba(68, 204, 68, 0.8);
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Add hover effect to the submit button */
+input[type="submit"]:hover {
+    background-color: #44cc44;
+}
+
+.login_text {
+    text-align: center;
+}
