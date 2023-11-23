@@ -1,7 +1,6 @@
 # Simulacra 1.4
 
-![bilde](https://github.com/SpaceyLad/simulacra/assets/87969837/6bbccb82-891e-472f-8acf-66148419041b)
-
+![DALL·E 2023-11-23 13 38 18 - A horror-themed and artistic cover art for 'Simulacra'  The scene is set in a dimly lit, eerie office environment  In the center, a person appears ner](https://github.com/SpaceyLad/simulacra/assets/87969837/e0a6aa22-450b-4f4c-95fe-3cbbbb6215a8)
 
 Welcome to Simulacra ~
 The purpose of this script is to create a wordlist with possible usernames or email addresses when you only know the person’s full name.
