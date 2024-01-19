@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, make_response, render_template
 import jwt
 import datetime
 from config import *
+import simulacra_api as simu
 
 app = Flask(__name__)
 
@@ -15,12 +16,10 @@ def home():
 # The POST request for getting the username and password.
 @app.route('/login', methods=['POST'])
 def login():
-
     # Get the information from the user.
     username = request.form.get('username')
     password = request.form.get('password')
     if username in users and users[username] == password:
-
         # If the username and password is correct, generate a encrypted with the secret key.
         token = jwt.encode({
             'user': username,
@@ -106,6 +105,39 @@ def open_route():
         return 'Session expired!', 403
     except jwt.InvalidTokenError:
         return 'Invalid token!', 403
+
+
+@app.route('/generate', methods=['POST'])
+def generate_wordlist():
+    # Industry
+    i = request.form.get('industry')
+
+    # Base information
+    f = request.form.get('first')
+    m = request.form.get('middle')
+    l = request.form.get('last')
+    dm = request.form.get('domain_input')
+
+    # Checkboxes
+    common_box = request.form.get('common')
+    range_box = request.form.get('range')
+    specific_box = request.form.get('specific')
+
+    # Numbers settings
+    range_nr = request.form.get('range_nr')
+    range = request.form.get('range')
+    common = request.form.get('common')
+    if common:
+        range_nr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"]
+
+    # Spilt number based on coma.
+    range_nr = range_nr.split(",")
+
+    # Specific nr setting
+    range_min = request.form.get('quantity_min')
+    range_max = request.form.get('quantity_max')
+
+    return simu.generate_wordlist(f, m, l, dm, i, range_nr, range, int(range_min), int(range_max), common_box, range_box, specific_box)
 
 
 # A logout button that clears the cookie.
